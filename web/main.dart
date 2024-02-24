@@ -31,8 +31,9 @@ class BaseComponent<T extends Element> {
   BaseComponent(
       {tagName = 'div', className = '', textContent = '', Element? parentNode})
       : node = document.createElement(tagName) as T {
-    node.classes.add(className);
-    node.innerText = textContent;
+    node
+      ..classes.add(className)
+      ..innerText = textContent;
     if (parentNode != null) {
       parentNode.append(node);
     }
@@ -77,7 +78,7 @@ class BaseComponent<T extends Element> {
   }
 }
 
-class TextComponent extends BaseComponent {
+class TextComponent extends BaseComponent<ParagraphElement> {
   TextComponent(String text, [className = 'text'])
       : super(textContent: text, tagName: 'p', className: className);
 }
